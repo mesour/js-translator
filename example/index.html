@@ -1,0 +1,14 @@
+<div>
+	SOME CONTENT HERE
+</div>
+
+<script src="../dist/translator.min.js"></script>
+
+<script>
+	var translator = new Translator({
+		language: 'cs',
+		url: 'locale.php?locale=%locale%'
+	});
+	var x = translator.domain('statistics.chart');
+	console.log(x.translate('title'));
+</script>
