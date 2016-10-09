@@ -3,7 +3,8 @@
 $cs = [
 	'statistics' => [
 		'chart' => [
-			'title' => 'Nějaký graf|Nějaké grafy|Nějakých grafů',
+			'title' => 'Nějaký jeden graf|Nějaké %count% grafy|Nějakých %count% grafů',
+			'testReplacement' => 'Test replacement %key% and second %key% and another %another%.|Now %key%.|Now only %another%.',
 		],
 	],
 ];
@@ -11,7 +12,8 @@ $cs = [
 $en = [
 	'statistics' => [
 		'chart' => [
-			'title' => 'Sample chart|SampleCharts',
+			'title' => 'One sample chart|%count% sample charts',
+			'testReplacement' => 'Test replacement %key% and second %key% and another %another%.|Now only %another% for en.',
 		],
 	],
 ];

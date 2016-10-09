@@ -18,11 +18,12 @@ export default class DomainTranslator
 	/**
 	 * @param {string} key
 	 * @param {int} [count]
+	 * @param {Object} [replacements]
 	 * @returns {string}
 	 */
-	translate(key, count)
+	translate(key, count, replacements)
 	{
-		return this.translator.translate(this.getKey(key), count);
+		return this.translator.translate(this.getKey(key), count, replacements);
 	}
 
 	/**

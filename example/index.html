@@ -1,14 +1,43 @@
-<div>
-	SOME CONTENT HERE
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+</head>
+<body>
 
-<script src="../dist/translator.min.js"></script>
+	<script src="../dist/translator.min.js"></script>
 
-<script>
-	var translator = new Translator({
-		language: 'cs',
-		url: 'locale.php?locale=%locale%'
-	});
-	var x = translator.domain('statistics.chart');
-	console.log(x.translate('title'));
-</script>
+	<script>
+		var translator = new mesour.Translator({
+			language: 'cs',
+			translates: {
+				'cs': {
+					statistics: {
+						chart: {
+							title: 'Nějaký jeden graf|Nějaké %count% grafy|Nějakých %count% grafů',
+							testReplacement: 'Test replacement %key% and second %key% and another %another%.|Now %key%|Now only %another%'
+						}
+					}
+				}
+			}
+			//url: 'locale.php?locale=%locale%'
+		});
+		var t = translator.domain('statistics.chart');
+
+		console.log(t.translate('title'));
+		console.log(t.translate('title', 2));
+		console.log(t.translate('title', 4));
+		console.log(t.translate('title', 5));
+		console.log(t.translate('title', 10));
+		console.log(t.translate('testReplacement', 1, {
+			key: 'xxx',
+			another: '`another replacement`'
+		}));
+		console.log(t.translate('testReplacement', 5, {
+			key: 'xxx',
+			another: '`another replacement`'
+		}));
+	</script>
+
+</body>
+</html>

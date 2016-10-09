@@ -1,5 +1,6 @@
 import Translator from './Translator.jsx';
 
-window.Translator = Translator;
+window.mesour = window.mesour || {};
+window.mesour.Translator = Translator;
 
 export default Translator;

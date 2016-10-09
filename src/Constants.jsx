@@ -5,4 +5,12 @@ export default class Constants
         return '|';
     }
 
+    static get REPLACE_PREFIX() {
+        return '%';
+    }
+
+    static get REPLACE_SUFFIX() {
+        return '%';
+    }
+
 }
