@@ -10,7 +10,7 @@ export default class Translator
 
 	options;
 
-	translates;
+	dictionary;
 
 	dataAdapter;
 
@@ -20,7 +20,7 @@ export default class Translator
 	 * @param {{
 	 *      language: string,
 	 *      [pluralSeparator]: string,
-	 *      [translates]: Object,
+	 *      [dictionary]: Object,
 	 *      [replacePrefix]: string,
 	 *      [replaceSuffix]: string,
 	 *      [url]: string|null
@@ -29,7 +29,7 @@ export default class Translator
 	 */
 	constructor(options)
 	{
-		this.translates = typeof options.translates === 'object' ? options.translates : {};
+		this.dictionary = typeof options.dictionary === 'object' ? options.dictionary : {};
 
 		this.options = {
 			pluralSeparator: typeof options.pluralSeparator === 'string' ? options.pluralSeparator : Constants.PLURAL_SEPARATOR,
@@ -53,7 +53,7 @@ export default class Translator
 		this.options.language = language;
 
 		if (this.options.url) {
-			this.translates[this.options.language] = this.getDataAdapter().load(this.options.language);
+			this.dictionary[this.options.language] = this.getDataAdapter().load(this.options.language);
 		}
 
 		if (DefaultPluralForm.hasCode(language)) {
@@ -71,17 +71,17 @@ export default class Translator
 
 	/**
 	 * @param {string} key
-	 * @param {int} [count]
+	 * @param {int|Object} [count]
 	 * @param {Object} [replacements]
 	 * @returns {string}
 	 */
 	translate(key, count, replacements)
 	{
-		count = typeof count === 'undefined' ? 1 : count;
-		replacements = typeof replacements === 'undefined' ? {} : replacements;
+		replacements = typeof replacements === 'undefined' ? (typeof count === 'object' ? count : {}) : replacements;
+		count = typeof count === 'undefined' || typeof count === 'object' ? 1 : count;
 		replacements['count'] = count;
 
-		let translated = Translator.index(this.translates[this.options.language], key);
+		let translated = Translator.index(this.dictionary[this.options.language], key);
 		if (translated === false) {
 			translated = key;
 			if (this.options.debug && window.console && typeof window.console.warn === 'function') {
