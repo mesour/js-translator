@@ -89,7 +89,7 @@ export default class Translator
 			}
 		}
 
-		let translations = translated.split(this.options.pluralSeparator);
+		let translations = new String(translated).split(this.options.pluralSeparator);
 		let text = count > 1
 			? this.getCurrentPluralForm().translate(translations, count)
 			: translations[0];
